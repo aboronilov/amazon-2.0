@@ -13,6 +13,6 @@ import { PrismaService } from './prisma.service';
       AuthModule
    ],
    controllers: [AppController],
-   providers: [AppService, PrismaService],
+   providers: [PrismaService, AppService],
 })
 export class AppModule { }
