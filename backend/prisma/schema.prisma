@@ -30,8 +30,7 @@ model Product {
    updatedAt   DateTime    @updatedAt
    name        String      @unique
    slug        String      @unique
-   description String
-   about       String[]
+   about       String
    price       Float
    images      String[]
    categoryId  String      @db.ObjectId
