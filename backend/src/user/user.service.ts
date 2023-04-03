@@ -7,7 +7,7 @@ import { hash } from 'argon2';
 
 @Injectable()
 export class UserService {
-   constructor(private prisma: PrismaService) {}
+   constructor(private prisma: PrismaService) { }
 
    async getUserById(id: string, selectObject: Prisma.UserSelect = {}) {
       const user = await this.prisma.user.findUnique({
@@ -72,20 +72,20 @@ export class UserService {
       }
 
       const userHasProuduct = user.favorites.find(item => item.id === productId)
-      
+
       await this.prisma.user.update({
          where: {
             id
          },
          data: {
             favorites: {
-               [userHasProuduct ? "disconnect" : "connect"] : {
+               [userHasProuduct ? "disconnect" : "connect"]: {
                   id: productId
                }
             }
          }
       })
 
-      return "Success"
+      return { message: "Success" }
    }
 }
