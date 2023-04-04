@@ -85,6 +85,7 @@ model OrderItem {
    updatedAt DateTime @updatedAt
    quantity  Int
    price     Float
+   cost      Float
    orderId   String   @db.ObjectId
    order     Order    @relation(fields: [orderId], references: [id])
    product   Product? @relation(fields: [productId], references: [id])
