@@ -3,7 +3,10 @@ import { Html, Head, Main, NextScript } from 'next/document'
 export default function Document() {
   return (
     <Html lang="en">
-      <Head />
+      <Head>
+         <link rel="icon" href="/Amazon_logo.svg.png" sizes="any" type="image/svg+xml" />
+         <title>Boronilov Amazon</title>
+      </Head>
       <body>
         <Main />
         <NextScript />
