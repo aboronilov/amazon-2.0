@@ -32,6 +32,12 @@ export const ProductService = {
          url: `${PRODUCTS}/${BY_CATEGORY}/${categorySlug}`,
          method: "GET",
       })
-   }
+   },
+   async getById(id: string){
+      return await instance<IProduct>({
+         url: `${PRODUCTS}//${id}`,
+         method: "GET",
+      })
+   },   
 }
 
