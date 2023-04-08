@@ -5,6 +5,7 @@ import React, { FC } from 'react'
 
 import { IProduct } from '@/types/product.interface'
 
+import { convertPrice } from '@/utils/convertPrice'
 import { getRating } from '@/utils/getRating'
 
 import AddToCartButton from './AddToCartButton'
@@ -20,23 +21,42 @@ const ProductItem: FC<{ product: IProduct }> = ({ product }) => {
 	const reviewsCounter = reviews?.length || 0
 	const description = about.split('|').slice(0, 3)
 	return (
-		<div>
-			<div className='bg-white rounded-xl relative'>
-            <div className="absolute top-2 right-2 z-10">
-               <DynamicFavoriteButton productId={id} />
-               <AddToCartButton product={product} />
-            </div>
+		<div className='hover:scale-105 hover:opacity-90 transition'>
+			<div className='bg-white rounded-xl relative overflow-hidden'>
+				<div className='absolute top-2 right-3 z-10 flex gap-2'>
+					<DynamicFavoriteButton productId={id} />
+					<AddToCartButton product={product} />
+				</div>
 				<Link href={`/products/${slug}`}>
-					<Image src={images[0]} width={300} height={300} alt={slug} />
+					<div className='h-56'>
+						<Image
+							src={images[0]}
+							fill
+							alt={slug}
+							style={{ objectFit: 'contain' }}
+						/>
+					</div>
 				</Link>
 			</div>
 
-			<Link href={`/products/${slug}`}>
-				<h3 className='mb-1'>{name}</h3>
+			<Link
+				href={`/category/${category.slug}`}
+				className='text-aqua text-xs my-2'
+			>
+				{category.name.toLocaleUpperCase()}
+			</Link>
+
+			<Link href={`/products/${slug}`}>				
+				<h3 className='my-2 h-20 max-h-full line-clamp-3 font-semibold'>
+					{name}
+				</h3>
 				<div className='text-xs my-2 cursor-pointer'>
 					<ul>
 						{description.map((item, i) => (
-							<li key={i} className='list-disc list-inside text-xs'>
+							<li
+								key={i}
+								className='list-disc list-inside text-xs line-clamp-1'
+							>
 								{item}
 							</li>
 						))}
@@ -44,18 +64,17 @@ const ProductItem: FC<{ product: IProduct }> = ({ product }) => {
 				</div>
 			</Link>
 
-			<Link
-				href={`/category/${category.slug}`}
-				className='capitalize text-aqua text-sm mb-2'
-			>
-				{category.name}
-			</Link>
-
-			<div>
+			<div className='flex items-center'>
 				<ProductRating rating={rating} />
-				{reviewsCounter > 0 ? <span>({reviewsCounter} reviews)</span> : null}
+				<span className='text-secondary ml-1 text-sm mt-1'>
+					{rating.toFixed(1)}
+				</span>
+				{reviewsCounter > 0 ? (
+					<span className='text-xs'>({reviewsCounter} reviews)</span>
+				) : null}
 			</div>
-			<div>{price}</div>
+
+			<div className='text-xl font-bold'>{convertPrice(price)}</div>
 		</div>
 	)
 }

@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import { RiShoppingCartLine, RiShoppingCartFill } from 'react-icons/ri'
+import { RiShoppingCartFill, RiShoppingCartLine } from 'react-icons/ri'
 
 import { useActions } from '@/hooks/useActions'
 import { useCart } from '@/hooks/useCart'
@@ -10,17 +10,18 @@ const AddToCartButton: FC<{ product: IProduct }> = ({ product }) => {
 	const { addToCart, removeFromCart } = useActions()
 	const { items } = useCart()
 	const currentElement = items.find(item => item.product.id === product.id)
+
 	return (
 		<div>
 			<button
-            className='text-primary'
+				className='text-secondary'
 				onClick={() =>
 					currentElement
 						? removeFromCart({ id: currentElement.id })
 						: addToCart({
 								product,
 								quantity: 1,
-                        price: product.price
+								price: product.price
 						  })
 				}
 			>

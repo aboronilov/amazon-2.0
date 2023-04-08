@@ -7,6 +7,7 @@ const axiosOptions = {
    baseURL: process.env.SERVER_URL,
    headers: getContentType(),
 }
+
 export const instance = axios.create(axiosOptions)
 export const instanceClassic = axios.create(axiosOptions)
 
