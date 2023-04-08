@@ -1,9 +1,9 @@
 import {IUser} from "./user.interface"
 
-export interface Ireview {
+export interface IReview {
    id: string
    user: IUser
    createdAt: string
    text: string
-   rating: string
+   rating: number
 }

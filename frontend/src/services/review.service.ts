@@ -1,5 +1,5 @@
-import { instance } from "@/api/api.interceptor";
-import { Ireview } from "@/types/review.interface";
+import { instance, instanceClassic } from "@/api/api.interceptor";
+import { IReview } from "@/types/review.interface";
 
 const REVIEWS = "reviews"
 const CREATE = "create"
@@ -11,13 +11,13 @@ type ReviewDataType = {
 
 export const ReviewService = {
    async getAll() {
-      return await instance<Ireview[]>({
+      return await instanceClassic<IReview[]>({
          url: `${REVIEWS}`,
          method: "GET"
       })
    },
    async getById(id: string) {
-      return await instance<Ireview>({
+      return await instanceClassic<IReview>({
          url: `${REVIEWS}/${id}`,
          method: "GET"
       })
@@ -26,7 +26,7 @@ export const ReviewService = {
       productId: string,
       data: ReviewDataType
    ) {
-      return await instance<Ireview>({
+      return await instance<IReview>({
          url: `${REVIEWS}/${CREATE}/${productId}`,
          method: "POST",
          data

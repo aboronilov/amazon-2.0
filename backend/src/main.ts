@@ -17,7 +17,7 @@ async function bootstrap() {
    const configService = app.get(ConfigService)
 
    app.enableCors({
-      allowedHeaders: ['content-type'],
+      allowedHeaders: ['content-type', 'authorization'],
       origin: configService.get("TRUSTED_DOMAIN"),
       credentials: true,
    });

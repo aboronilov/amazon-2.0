@@ -1,5 +1,5 @@
-import { instance } from "@/api/api.interceptor";
-import { IUser } from '@/types/user.interface';
+import { instance, instanceClassic } from "@/api/api.interceptor";
+import { IFullUser, IUser } from '@/types/user.interface';
 
 const USERS = "users"
 const PROFILE = "profile"
@@ -15,20 +15,20 @@ type UpdateTypeData = {
 
 export const UserService = {
    async getProfile() {
-      return await instance<IUser[]>({
-         url: `${USERS}/${PROFILE}`,
+      return await instance<IFullUser>({
+         url: `${USERS}/${PROFILE}/`,
          method: "GET"
       })
    },
    async updateProfile(data: UpdateTypeData) {
-      return await instance<IUser[]>({
+      return await instance<IUser>({
          url: `${USERS}/${PROFILE}`,
          method: "PUT",
          data
       })
    },
    async toggleFavorite(productId: string) {
-      return await instance<IUser[]>({
+      return await instance<IUser>({
          url: `${USERS}/${PROFILE}/${FAVORITES}/${productId}`,
          method: "PATCH",
          

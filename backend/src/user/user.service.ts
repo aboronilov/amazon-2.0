@@ -42,7 +42,6 @@ export class UserService {
             email: dto.email
          }
       })
-      console.log(isOwner)
 
       if (isOwner.id !== id) {
          throw new BadRequestException("You are not the owner of this profile")
