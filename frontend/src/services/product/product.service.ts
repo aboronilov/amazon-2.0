@@ -1,5 +1,5 @@
 import { instanceClassic } from '@/api/api.interceptor';
-import { TypeDataFilters } from './product.types';
+import { EnumProductSort, TypeDataFilters } from './product.types';
 import { IProduct, TypePaginationProducts } from '@/types/product.interface';
 
 const PRODUCTS = "products"
@@ -9,11 +9,13 @@ const BY_CATEGORY = "by-category"
 
 export const ProductService = {
    async getAll(queryData = {} as TypeDataFilters){
-      return await instanceClassic<TypePaginationProducts>({
+      const {data} = await instanceClassic<TypePaginationProducts>({
          url: `${PRODUCTS}`,
          method: "GET",
          params: queryData
       })
+
+      return data
    },
    async getSimilarProducts(productId: string){
       return await instanceClassic<IProduct[]>({

@@ -1,22 +1,24 @@
 import React, { FC } from 'react'
 
 import Meta from '@/ui/Meta'
-import Catalog from '@/ui/catalog/Catalog'
+import CatalogPagination from '@/ui/catalog/CatalogPagination'
 import Layout from '@/ui/layout/layout'
 
 import { useActions } from '@/hooks/useActions'
 import { useAuth } from '@/hooks/useAuth'
 
 import { TypePaginationProducts } from '@/types/product.interface'
+import Catalog from '@/ui/catalog/Catalog'
 
-const Home: FC<TypePaginationProducts> = ({ products }) => {
+const Home: FC<TypePaginationProducts> = ({ products, length }) => {
 	const { user } = useAuth()
 	const { logout } = useActions()
 	return (
 		<Meta title='Home'>
 			<Layout>
 				{!!user && <button onClick={() => logout()}>Logout</button>}
-				<Catalog products={products} title='Trending now' />
+				<CatalogPagination data={{products, length}} title='Trending now' isPagination />
+				{/* <Catalog products={products} title='Trending now'/> */}
 			</Layout>
 		</Meta>
 	)
