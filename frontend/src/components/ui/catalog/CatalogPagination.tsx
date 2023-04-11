@@ -23,18 +23,18 @@ const Catalog: FC<ICatalogPagination> = ({
 	isPagination = false
 }) => {
 	const [sortType, setSortType] = useState<EnumProductSort>(EnumProductSort.NEWEST)
-	// const [page, setPage] = useState(1)
+	const [page, setPage] = useState(1)
 
 	const {data:response, isLoading} = useQuery(
 		['products', sortType],
 		() => ProductService.getAll({
 			// page,
 			// perPage: 4,
-			sort: sortType
+			// sort: sortType
 		}),
 		{
 			initialData: data,
-			// keepPreviousData: true
+			keepPreviousData: true
 		}
 	)
 
@@ -52,7 +52,7 @@ const Catalog: FC<ICatalogPagination> = ({
 							<ProductItem key={item.id} product={item} />
 						))}
 					</div>
-					<div className='text-center mt-12'>
+					<div className='text-center mt-16'>
 						{/* {isPagination ? (
 							<Button 
 								variant='orange' 
@@ -62,6 +62,19 @@ const Catalog: FC<ICatalogPagination> = ({
 								Load more
 							</Button>
 							) : null} */}
+						{/* {Array.from({ length: response.length / 4}).map((_, index) => {
+							const pageNumber = index + 1
+							return (
+								<Button
+									size="sm"
+									variant={page === pageNumber ? "orange" : "white"}
+									onClick={() => setPage(pageNumber)}
+									className='mx-3'
+								>
+									{pageNumber}
+								</Button>
+							)
+						})} */}
 					</div>
 				</>
 			) : (

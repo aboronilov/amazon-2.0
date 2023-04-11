@@ -7,14 +7,13 @@ const Layout: React.FunctionComponent<React.PropsWithChildren<unknown>> = ({
 	children
 }) => {
 	return (
-		<div
-			className='grid grid-cols-2'
-			style={{ gridTemplateColumns: '1fr 4fr' }}
-		>
-			<Sidebar />
-			<div>
-				<Header />
-				<main className='p-12'>{children}</main>
+		<div>
+			<Header />
+			<div className="grid" style={{gridTemplateColumns: "1fr 4 fr"}}>
+				<Sidebar />
+				<main className='p-12'>
+					{children}
+				</main>
 			</div>
 		</div>
 	)

@@ -6,9 +6,8 @@ import Layout from '@/ui/layout/layout'
 
 import { useActions } from '@/hooks/useActions'
 import { useAuth } from '@/hooks/useAuth'
-
 import { TypePaginationProducts } from '@/types/product.interface'
-import Catalog from '@/ui/catalog/Catalog'
+
 
 const Home: FC<TypePaginationProducts> = ({ products, length }) => {
 	const { user } = useAuth()
